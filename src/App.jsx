@@ -7,6 +7,7 @@ import StaffDashboard from './pages/StaffDashboard';
 import PatientProfile from './pages/PatientProfile';
 import HospitalAdmin from './pages/HospitalAdmin';
 import AppointmentBooking from './pages/AppointmentBooking';
+import HospitalMapPage from './pages/HospitalMapPage';
 import AuthLogin from './pages/AuthLogin';
 
 function NavigationBar() {
@@ -175,7 +176,8 @@ function MainApp() {
           
           <Route path="/" element={<ProtectedRoute allowedRoles={['patient', 'staff', 'admin']}><HomeDashboard /></ProtectedRoute>} />
           <Route path="/appointments" element={<ProtectedRoute allowedRoles={['patient', 'staff', 'admin']}><AppointmentBooking /></ProtectedRoute>} />
-          <Route path="/hospitals" element={<ProtectedRoute allowedRoles={['patient', 'staff', 'admin']}><HospitalSelection /></ProtectedRoute>} />
+                     <Route path="/hospitals" element={<ProtectedRoute allowedRoles={['patient', 'staff', 'admin']}><HospitalSelection /></ProtectedRoute>} />
+           <Route path="/hospitals/:hospitalId/map" element={<ProtectedRoute allowedRoles={['patient', 'staff', 'admin']}><HospitalMapPage /></ProtectedRoute>} />
           <Route path="/profile" element={<ProtectedRoute allowedRoles={['patient', 'staff', 'admin']}><PatientProfile /></ProtectedRoute>} />
           
           <Route path="/staff" element={<ProtectedRoute allowedRoles={['staff', 'admin']}><StaffDashboard /></ProtectedRoute>} />

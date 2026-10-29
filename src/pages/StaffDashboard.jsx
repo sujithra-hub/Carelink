@@ -1,31 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Users, 
-  UserPlus, 
-  CheckCircle, 
-  SkipForward, 
-  Megaphone, 
-  Activity, 
-  Clock, 
-  Search, 
-  FileText, 
-  History, 
-  AlertTriangle, 
-  RotateCcw, 
-  Tv, 
-  Stethoscope, 
-  BadgeCheck, 
-  Ticket, 
-  X, 
-  Volume2, 
-  VolumeX, 
-  Play, 
-  Printer, 
-  Calendar, 
-  AlertCircle 
+import {
+  Users,
+  UserPlus,
+  CheckCircle,
+  SkipForward,
+  Megaphone,
+  Activity,
+  Clock,
+  Search,
+  FileText,
+  History,
+  AlertTriangle,
+  RotateCcw,
+  Tv,
+  Stethoscope,
+  BadgeCheck,
+  Ticket,
+  Edit,
+  X,
+  Volume2,
+  VolumeX,
+  Play,
+  Printer,
+  Calendar,
+  AlertCircle
 } from 'lucide-react';
 import { useCareLink } from '../context/CareLinkContext';
 import TokenPassModal from '../components/TokenPassModal';
+import StaffMapEditor from '../components/StaffMapEditor';
 
 export default function StaffDashboard() {
   const { 
@@ -54,6 +56,7 @@ export default function StaffDashboard() {
   const [activeConsole, setActiveConsole] = useState('doctor');
   const [selectedTokenSlip, setSelectedTokenSlip] = useState(null);
   const [isSoundMuted, setIsSoundMuted] = useState(false);
+const [showMapEditor, setShowMapEditor] = useState(false);
 
   // Consultation Timer
   const [consultationSeconds, setConsultationSeconds] = useState(140);
@@ -393,7 +396,31 @@ export default function StaffDashboard() {
           >
             <UserPlus size={15} /> Quick Walk-In
           </button>
+          <button onClick={() => setShowMapEditor(true)} className="btn btn-primary" style={{ padding: '0.5rem 1rem', fontSize: '0.82rem', backgroundColor: 'var(--accent-color)', marginLeft: '0.4rem' }}>
+            <Edit size={15} /> Edit Map
+          </button>
         </div>
+{/* Map Editor Modal */}
+{showMapEditor && (
+  <div style={{
+    position: 'fixed',
+    top: 0, left: 0, right: 0, bottom: 0,
+    background: 'rgba(15, 23, 42, 0.65)',
+    backdropFilter: 'blur(6px)',
+    display: 'flex', alignItems: 'center', justifyContent: 'center',
+    zIndex: 1000
+  }}>
+    <div className="card" style={{ maxWidth: '720px', width: '92%', padding: '2rem' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+        <h3 style={{ margin: 0, fontSize: '1.3rem' }}>Edit Hospital Map</h3>
+        <button onClick={() => setShowMapEditor(false)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)' }}>
+          <X size={20} />
+        </button>
+      </div>
+      <StaffMapEditor hospitalId={activeHospital?.id} />
+    </div>
+  </div>
+)}
       </div>
 
       {/* VIEW 1: DOCTOR WORKSTATION */}
@@ -667,7 +694,7 @@ export default function StaffDashboard() {
                 onChange={(e) => setSearchBookingRef(e.target.value)}
                 style={{ flex: 1, padding: '0.75rem 1rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)', outline: 'none' }}
               />
-              <button className="btn btn-primary" onClick={() => triggerNotice('Looking up appointment database...')}>
+              <button className="btn btn-primary" onClick={handleSearch}>
                 Search Record
               </button>
             </div>

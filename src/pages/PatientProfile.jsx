@@ -118,7 +118,7 @@ export default function PatientProfile() {
       {/* Header Profile Section */}
       <div className="card glass" style={{ display: 'flex', gap: '2rem', alignItems: 'center', background: 'linear-gradient(to right, var(--bg-card), rgba(59, 130, 246, 0.05))', flexWrap: 'wrap' }}>
         <div style={{ width: '110px', height: '110px', borderRadius: '50%', overflow: 'hidden', border: '4px solid white', boxShadow: 'var(--shadow-md)' }}>
-          <img src={patient.avatar || 'https://api.dicebear.com/7.x/avataaars/svg?seed=Felix'} alt={patient.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          <img src={patient.avatar || "https://images.unsplash.com/photo-1502767089025-6572583495b8?auto=format&fit=crop&w=200&q=80"} alt={patient.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         </div>
         <div style={{ flex: 1 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', marginBottom: '0.3rem' }}>

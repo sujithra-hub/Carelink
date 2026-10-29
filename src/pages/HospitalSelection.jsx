@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { MapPin, Phone, Activity, Star, ChevronRight, Check } from 'lucide-react';
+import { MapPin, Phone, Activity, Star, ChevronRight, Check, Map } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useCareLink } from '../context/CareLinkContext';
 
@@ -150,7 +151,15 @@ export default function HospitalSelection() {
                   </div>
                 </div>
 
-                <div style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: '1px solid var(--border-color)', paddingTop: '1rem' }}>
+                <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: '0.6rem', borderTop: '1px solid var(--border-color)', paddingTop: '1rem' }}>
+                  <Link
+                    to={`/hospitals/${hospital.id}/map`}
+                    className="btn btn-outline"
+                    style={{ width: '100%', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', fontSize: '0.85rem', padding: '0.45rem 0.8rem', background: 'linear-gradient(135deg, rgba(59,130,246,0.08), rgba(139,92,246,0.08))', borderColor: 'var(--primary-light)' }}
+                  >
+                    <Map size={15} /> View Floor Map
+                  </Link>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--success)' }}></div>
                     <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>
@@ -165,6 +174,7 @@ export default function HospitalSelection() {
                   >
                     {isCurrent ? 'Selected' : <>Select <ChevronRight size={15} /></>}
                   </button>
+                  </div>
                 </div>
               </div>
             </div>

@@ -28,6 +28,7 @@ import {
   streamQueue
 } from '../controllers/queueController.js';
 import { getAppointments, createAppointment, rescheduleAppointment, cancelAppointment } from '../controllers/appointmentController.js';
+import { getHospitalMap, upsertHospitalLocations, upsertHospitalRoutes, getShortestRoute } from '../controllers/hospitalMapController.js';
 
 const router = Router();
 
@@ -40,6 +41,11 @@ router.get('/organizations', getOrganizations);
 router.get('/hospitals', getHospitals);
 router.get('/hospitals/:id', getHospitalById);
 router.patch('/hospitals/:id', updateHospital);
+// Hospital map routes
+router.get('/hospitals/:id/map', getHospitalMap);
+router.post('/hospitals/:id/locations', upsertHospitalLocations);
+router.post('/hospitals/:id/routes', upsertHospitalRoutes);
+router.get('/hospitals/:id/route', getShortestRoute);
 
 // Branch Configuration & Operations
 router.get('/branches/:branchId/config', getBranchConfig);

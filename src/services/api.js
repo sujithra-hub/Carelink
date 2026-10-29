@@ -27,8 +27,8 @@ export const api = {
     return res.json();
   },
 
-  updateHospital: async (id, data) => {
-    const res = await fetch(`${API_BASE_URL}/hospitals/${id}`, {
+  updatePatient: async (id, data) => {
+    const res = await fetch(`${API_BASE_URL}/patients/${id}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
@@ -216,5 +216,30 @@ export const api = {
       body: JSON.stringify({ reason })
     });
     return res.json();
-  }
+  }, // end of cancelAppointment
+  // Map related API methods
+  getHospitalMap: async (hospitalId) => {
+    const res = await fetch(`${API_BASE_URL}/hospitals/${hospitalId}/map`);
+    return res.json();
+  },
+  upsertHospitalLocations: async (hospitalId, locations) => {
+    const res = await fetch(`${API_BASE_URL}/hospitals/${hospitalId}/locations`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(locations),
+    });
+    return res.json();
+  },
+  upsertHospitalRoutes: async (hospitalId, routes) => {
+    const res = await fetch(`${API_BASE_URL}/hospitals/${hospitalId}/routes`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(routes),
+    });
+    return res.json();
+  },
+  getShortestRoute: async (hospitalId, fromId, toId) => {
+    const res = await fetch(`${API_BASE_URL}/hospitals/${hospitalId}/route?from=${fromId}&to=${toId}`);
+    return res.json();
+  },
 };
