@@ -46,7 +46,7 @@ function NavigationBar() {
           {mobileMenuOpen ? '✕' : '☰'}
         </button>
       
-      <div className="nav-links-container" style={{ display: mobileMenuOpen ? 'flex' : 'none', flexDirection: 'column', gap: '0.8rem', marginTop: '0.5rem' }}>
+      <div className={`nav-links-container ${mobileMenuOpen ? 'open' : ''}`}>
         {currentUser && (
           <>
             <Link to="/" style={{ color: location.pathname === '/' ? 'var(--primary-color)' : 'var(--text-main)', fontWeight: 600 }}>

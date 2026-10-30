@@ -344,7 +344,7 @@ export default function HospitalMap({ hospital }) {
       )}
 
       {/* ── Main Grid ── */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 240px', gap: '1rem', alignItems: 'start' }}>
+      <div className="hospital-map-grid">
         {/* Floor plan */}
         <div className="glass" style={{ borderRadius: 'var(--radius-lg)', overflow: 'hidden' }}>
           {/* Floor tabs + Locate Me */}
@@ -365,7 +365,7 @@ export default function HospitalMap({ hospital }) {
 
           {/* SVG */}
           <div style={{ padding: '1rem', overflowX: 'auto' }}>
-            <svg viewBox="0 0 680 290" style={{ width: '100%', minWidth: 480, display: 'block' }}>
+            <svg viewBox="0 0 680 290" style={{ width: '100%', height: 'auto', display: 'block' }}>
               <rect width="680" height="290" rx="8" fill="#f8fafc" />
 
               {/* Corridor */}

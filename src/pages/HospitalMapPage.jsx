@@ -26,7 +26,7 @@ export default function HospitalMapPage() {
   }
 
   return (
-    <div style={{ display: 'grid', gap: '1.5rem' }}>
+    <div className="hospital-map-page">
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
         <Link

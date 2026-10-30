@@ -232,6 +232,20 @@ a:hover {
   align-items: center;
 }
 
+/* Mobile navigation handling */
+@media (max-width: 768px) {
+  .nav-links-container {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.8rem;
+    margin-top: 0.5rem;
+  }
+  .nav-links-container.open {
+    display: flex;
+  }
+}
+
 /* Tablet Breakpoint (<= 1024px) */
 @media (max-width: 1024px) {
   .dashboard-main-grid {
