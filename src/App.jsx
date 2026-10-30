@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import { CareLinkProvider, useCareLink } from './context/CareLinkContext';
 import HomeDashboard from './pages/HomeDashboard';
@@ -13,6 +13,8 @@ import AuthLogin from './pages/AuthLogin';
 function NavigationBar() {
   const location = useLocation();
   const { currentUser, logout, activeHospital, patientProfiles, loginAsPatient } = useCareLink();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const toggleMenu = () => setMobileMenuOpen(!mobileMenuOpen);
 
   return (
     <nav className="glass nav-bar-responsive">
@@ -40,8 +42,11 @@ function NavigationBar() {
           </div>
         </Link>
       </div>
+        <button className="btn btn-outline nav-toggle-button" onClick={toggleMenu} style={{ marginLeft: 'auto' }}>
+          {mobileMenuOpen ? '✕' : '☰'}
+        </button>
       
-      <div className="nav-links-container">
+      <div className="nav-links-container" style={{ display: mobileMenuOpen ? 'flex' : 'none', flexDirection: 'column', gap: '0.8rem', marginTop: '0.5rem' }}>
         {currentUser && (
           <>
             <Link to="/" style={{ color: location.pathname === '/' ? 'var(--primary-color)' : 'var(--text-main)', fontWeight: 600 }}>
